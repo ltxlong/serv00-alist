@@ -66,6 +66,12 @@ database部分，type需要改成`mysql`，host填写你在注册邮件中看到
 
 运行正常，记得把管理员用户的密码记住。接着使用Ctrl+c停止运行。
 
+若要设置新的密码：
+
+```
+./web.js admin set NEW_PASSWORD
+```
+
 #### 10、安装npm22:
 
 ```

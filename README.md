@@ -84,16 +84,7 @@ npm22 install
 
 完成
 
-如果直接访问 alist.example.com 没有跳转到alist主页的话，可以修改下 /public_nodejs/public/index.html
-
-在index.html的</style>和</head>之间，添加以下代码：
-
-```
-<script>
-    window.location.href = "/@login";
-</script>
-```
-修改完记得保存文件
+如果直接访问 alist.example.com 没有跳转到alist主页的话，可以 /public_nodejs/下的public/目录
 
 自动启动：
 你可以通过访问网站对项目进行唤醒。如果你需要保活，可以使用以下公共服务对网页进行监控：

@@ -16,7 +16,7 @@
 
 #### 3、登录serv00 panel，Add website，node js，v22.x.x，访问 alist.example.com 看是否成功
 
-#### 4、开一个serv00 port，并且新建一个mysql数据库，记住相关配置
+#### 4、开一个serv00 tcp port，并且新建一个mysql数据库，记住相关配置
 
 #### 5、登录serv00 panel的file_manager，同时登录SSH
 

@@ -94,3 +94,5 @@ npm22 install
 Serv00 进程保活最终解决方案：https://saika.us.kg/2024/08/15/serv00-keep-alive 
 
 Serv00 部署 AList：https://github.com/jinnan11/alist-freebsd 
+
+AList 官方说明文档：https://alist.nn.ci/zh/ 

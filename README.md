@@ -46,17 +46,19 @@ bash <(curl -s https://raw.githubusercontent.com/ltxlong/serv00-alist/main/insta
 
 主要修改了CDN、database、scheme三个部分，其中CDN可以在Alist的官方文档找到，请选择你本地网络连接速度最快的一个。
 
-scheme部分，我选择修改adress为127.0.0.1本地回环，是为了避免被他人使用http://ip:port 的方式进行访问。至于自己怎么访问，我在本文后面的部分会进行介绍。port要改成自己前面放行的端口。
+scheme部分，我选择修改address为127.0.0.1本地回环，是为了避免被他人使用http://ip:port 的方式进行访问。至于自己怎么访问，我在本文后面的部分会进行介绍。port要改成自己前面放行的端口。
 
 database部分，type需要改成`mysql`，host填写你在注册邮件中看到的mysql的地址，port是默认的3306，用户名、密码、数据库名则按照你创建的情况进行填写
 
 补充
 
-第25行的IP地址无需修改，使用默认0.0.0.0
+CDN如果改的不对，首页加载不出来的！可以修改CDN为：https://jsd.onmicrosoft.cn/gh/alist-org/web-dist@$version/dist/ 
 
-第26行的端口号需要和app.js中的第13行端口号保持一致
+数据库的表前缀修改为：ALIST_
 
-第83行的端口号5246改为0
+第25行的端口号需要和app.js中的第13行端口号保持一致
+
+第80行的端口号5246改为0
 
 #### 9、启动一次AList，查看运行是否正常
 
@@ -66,11 +68,13 @@ database部分，type需要改成`mysql`，host填写你在注册邮件中看到
 
 运行正常，记得把管理员用户的密码记住。接着使用Ctrl+c停止运行。
 
-若要设置新的密码：
+若要直接命令设置新的管理员密码，scheme的address不能设置为127.0.0.1，可以修改完密码再改scheme address：
 
 ```
 ./web.js admin set NEW_PASSWORD
 ```
+
+也可以不用命令修改密码，直接登录alist管理后台修改密码也行
 
 #### 10、安装npm22:
 

@@ -8,19 +8,19 @@
 
 步骤：
 
-## 1、域名托管到cloudflare，如 example.com
+### 1、域名托管到cloudflare，如 example.com
 
-## 2、新增子域名的A记录，解析到serv00的一个ip（随便选分配的两个中的一个），
+### 2、新增子域名的A记录，解析到serv00的一个ip（随便选分配的两个中的一个），
 
 如 A记录 alist.example.com xxx.xxx.xxx.xxx
 
-## 3、登录serv00 panel，Add website，node js，v22.x.x，访问 alist.example.com 看是否成功
+### 3、登录serv00 panel，Add website，node js，v22.x.x，访问 alist.example.com 看是否成功
 
-## 4、开一个serv00 port，并且新建一个数据库，记住相关配置
+### 4、开一个serv00 port，并且新建一个数据库，记住相关配置
 
-## 5、登录serv00 panel的file_manager，同时登录SSH
+### 5、登录serv00 panel的file_manager，同时登录SSH
 
-## 6、执行 
+### 6、执行 
 
 ```
 cd ~/domains/网站/public_nodejs
@@ -28,13 +28,13 @@ cd ~/domains/网站/public_nodejs
 
 记得将这里面的 “网站” 替换为刚刚的子域名 alist.example.com
 
-## 7、下载AList和运行Node.js的基础文件：
+### 7、下载AList和运行Node.js的基础文件：
 
 ```
 bash <(curl -s https://raw.githubusercontent.com/ltxlong/serv00-alist/main/install_alist.sh)
 ```
 
-## 8、按照提示修改相关端口：
+### 8、按照提示修改相关端口：
 
 请修改 app.js 文件中的第 13 行，将 PORT 替换为您实际开放的端口号
 
@@ -58,7 +58,7 @@ database部分，type需要改成`mysql`，host填写你在注册邮件中看到
 
 第83行的端口号5246改为0
 
-## 9、启动一次AList，查看运行是否正常
+### 9、启动一次AList，查看运行是否正常
 
 ```
 ./web.js server
@@ -66,7 +66,7 @@ database部分，type需要改成`mysql`，host填写你在注册邮件中看到
 
 运行正常，记得把管理员用户的密码记住。接着使用Ctrl+c停止运行。
 
-## 10、安装npm22:
+### 10、安装npm22:
 
 ```
 npm22 install

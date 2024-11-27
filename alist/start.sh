@@ -12,8 +12,7 @@ get_current_version() {
 }
 
 get_latest_version() {
-    # Get latest release version number
-    RELEASE_LATEST="$(curl -IkLs -o ${TMP_DIRECTORY}/NUL -w %{url_effective} https://github.com/uubulb/alist-freebsd/releases/latest | grep -o "[^/]*$")"
+    RELEASE_LATEST="$(curl -IkLs -o /dev/null -w %{url_effective} https://github.com/AlistGo/alist/releases/latest | grep -o "[^/]*$")"
     RELEASE_LATEST="v${RELEASE_LATEST#v}"
     if [[ -z "$RELEASE_LATEST" ]]; then
         echo "error: Failed to get the latest release version, please check your network."
@@ -22,7 +21,7 @@ get_latest_version() {
 }
 
 download_web() {
-    DOWNLOAD_LINK="https://github.com/uubulb/alist-freebsd/releases/latest/download/alist"
+    DOWNLOAD_LINK="https://github.com/AlistGo/alist/releases/latest/download/alist-freebsd-amd64.tar.gz"
     if ! wget -qO "$ZIP_FILE" "$DOWNLOAD_LINK"; then
         echo 'error: Download failed! Please check your network or try again.'
         return 1
@@ -31,7 +30,8 @@ download_web() {
 }
 
 install_web() {
-    install -m 755 ${TMP_DIRECTORY}/alist ${FILES_PATH}/web.js
+    tar -xzf "$ZIP_FILE" -C "$TMP_DIRECTORY"
+    install -m 755 "${TMP_DIRECTORY}/alist" "${FILES_PATH}/web.js"
 }
 
 run_web() {
@@ -41,24 +41,23 @@ run_web() {
 }
 
 TMP_DIRECTORY="$(mktemp -d)"
-ZIP_FILE="${TMP_DIRECTORY}/alist"
+ZIP_FILE="${TMP_DIRECTORY}/alist-freebsd-amd64.tar.gz"
 
 get_current_version
 get_latest_version
+
 if [ "${RELEASE_LATEST}" = "${CURRENT_VERSION}" ]; then
-    "rm" -rf "$TMP_DIRECTORY"
+    rm -rf "$TMP_DIRECTORY"
     run_web
     exit
 fi
-download_web
-EXIT_CODE=$?
-if [ ${EXIT_CODE} -eq 0 ]; then
-    :
+
+if download_web; then
+    install_web
+    rm -rf "$TMP_DIRECTORY"
+    run_web
 else
-    "rm" -rf "$TMP_DIRECTORY"
-    run_web
-    exit
+    echo "error: Failed to download and extract the file."
+    rm -rf "$TMP_DIRECTORY"
+    exit 1
 fi
-install_web
-"rm" -rf "$TMP_DIRECTORY"
-run_web

@@ -9,10 +9,12 @@ if [ "$(basename $(pwd))" == "public_nodejs" ]; then
     wget https://raw.githubusercontent.com/ltxlong/serv00-alist/main/alist/app.js 
     wget https://raw.githubusercontent.com/ltxlong/serv00-alist/main/alist/start.sh
     wget https://raw.githubusercontent.com/ltxlong/serv00-alist/main/alist/package.json
-    wget https://github.com/uubulb/alist-freebsd/releases/latest/download/alist
+    wget https://github.com/AlistGo/alist/releases/latest/download/alist-freebsd-amd64.tar.gz
     
     # 重命名并设置权限，运行服务
-    mv alist web.js && chmod +x web.js && ./web.js server
+    if [ -f "alist-freebsd-amd64.tar.gz" ]; then
+        tar -xzf alist-freebsd-amd64.tar.gz && rm alist-freebsd-amd64.tar.gz && rm -rf temp && mv alist web.js && chmod +x web.js && ./web.js server
+    fi
 
     # 清屏
     clear
